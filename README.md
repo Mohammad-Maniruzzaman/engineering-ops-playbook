@@ -12,26 +12,26 @@ If you are hiring for Engineering Operations / Program Management roles, this re
 - Tool pilots (including GenAI) lack guardrails and success criteria
 
 ## What’s inside (clickable)
-- **Jira governance** → `jira-governance/`  
+- **Jira governance** → [jira-governance/](./jira-governance/)  
   Workflow standards, taxonomy/data integrity rules, dashboard definitions
-- **Planning cadence** → `planning-cadence/`  
+- **Planning cadence** → [planning-cadence/](./planning-cadence/)  
   Quarterly planning template, dependency register, executive readout (1 page)
-- **Docs hub + onboarding** → `docs-hub-and-onboarding/`  
+- **Docs hub + onboarding** → [docs-hub-and-onboarding/](./docs-hub-and-onboarding/)  
   SSOT structure, architecture spec template, 30/60/90 onboarding plan
-- **Comms hygiene** → `comms-hygiene/`  
+- **Comms hygiene** → [comms-hygiene/](./comms-hygiene/)  
   Weekly update template, decision log, Slack/DL hygiene rules
-- **GenAI ops** → `genai-ops/`  
+- **GenAI ops** → [genai-ops/](./genai-ops/)  
   Pilot proposal template (guardrails + metrics) and reusable prompt patterns
-- **Culture events** → `events/`  
-  Hack day / demo fair runbook
+- **Culture events** → [events/](./events/)  
+  Hack day/demo fair runbook
 
 ## Start here (fast path)
-- `jira-governance/taxonomy-and-data-integrity.md`
-- `planning-cadence/exec-readout-template.md`
-- `genai-ops/genai-pilot-template.md`
+- [Jira taxonomy + data integrity](./jira-governance/taxonomy-and-data-integrity.md)
+- [Executive readout template](./planning-cadence/exec-readout-template.md)
+- [GenAI pilot template](./genai-ops/genai-pilot-template.md)
 
 ## How to use (recommended)
-1) Start with `00-overview/operating-principles.md`.
+1) Start with [Operating principles](./00-overview/operating-principles.md).
 2) Pilot one mechanism for 2–4 weeks (e.g., Jira taxonomy + 1 dashboard + exec readout).
 3) Measure adoption + outcomes (staleness, cycle time, status churn, onboarding time).
 4) Roll out incrementally with a clear ownership model.
