@@ -23,7 +23,7 @@ If you are hiring for Engineering Operations / Program Management roles, this re
 - **GenAI ops** → `genai-ops/`  
   Pilot proposal template (guardrails + metrics) and reusable prompt patterns
 - **Culture events** → `events/`  
-  Hack day/demo fair runbook
+  Hack day / demo fair runbook
 
 ## Start here (fast path)
 - `jira-governance/taxonomy-and-data-integrity.md`
