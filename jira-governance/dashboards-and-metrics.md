@@ -171,68 +171,140 @@ Track dependencies with:
 
 
 
-## Metric notes
+## Metric notes (definitions + Jira implementation + interpretation)
 
-### Core metrics (definitions)
-- **Staleness rate (%)**  
-  **Definition:** % of issues in **In Progress** with **no meaningful update in the last 7 days**.  
-  **Intent:** detect hidden WIP and “status churn.”  
-  **Formula:** stale_in_progress / total_in_progress
+> Field names and exact gadgets vary by Jira setup. The patterns below are Jira-native (saved filters + dashboard gadgets) and can be made more precise via Automation or BI when needed.
 
-- **WIP (count)**  
-  **Definition:** total issues in **In Progress** (optionally segmented by Domain/Team).  
-  **Intent:** control concurrency; WIP creep is an early risk signal.
+### 1) Staleness rate (%)
+**Definition:** % of issues in **In Progress** with **no meaningful update** in the last 7 days.  
+**Business/program signal:** “Are we seeing real progress or status-churn?” Trusted tracking reduces meeting overhead and surprise slips.
 
-- **Blocked count (count) + Blocked time (days)**  
-  **Definition:** number of issues in **Blocked**, and time spent in Blocked per issue (report median + p75).  
-  **Intent:** expose dependency friction and decision latency.
+**Jira implementation (baseline proxy)**
+- Saved filter:  
+  `status = "In Progress" AND resolution = Unresolved`
+- Saved filter (stale proxy):  
+  `status = "In Progress" AND resolution = Unresolved AND updated <= -7d`
+- Dashboard gadgets:
+  - “Filter Results” (list stale issues)
+  - “Filter Count” (stale count) + “Filter Count” (WIP count)
 
-- **Cycle time (days) — median + p75**  
-  **Definition:** time from **In Progress → Done** (exclude Backlog/Ready wait time).  
-  **Intent:** measure delivery experience; p75 surfaces long-tail pain.
+**Example calculation (manual % using counts)**
+- WIP count = 37 (from WIP filter)
+- Stale count = 2 (from stale filter)
+- Staleness rate ≈ 2 / 37 = 5.4%
 
-- **Throughput (items/week)**  
-  **Definition:** count of issues moved to **Done** per week (use a rolling 4-week trend).  
-  **Intent:** detect capacity/flow changes without overreacting to noise.
+**Leader interpretation**
+- Rising staleness usually means unclear ownership, hidden blockers, or too much WIP.
+- Action: reassign DRIs, reduce WIP, enforce update hygiene, or re-scope work.
 
-- **Reopen rate (%)**  
-  **Definition:** % of completed issues that re-enter **In Progress** within 14 days due to defects/rework.  
-  **Intent:** quality/rework signal; used with cycle time, not alone.
-
-### Usage guidelines
-- Prefer a small set of stable metrics over frequent changes.
-- Use **medians + p75** (avoid averages) to capture real experience.
-- Treat metrics as **signals**, not targets; validate data integrity (taxonomy, required fields, and update hygiene) to prevent gaming.
+**Precision note**
+`updated <= -7d` counts any update (including status toggles). For “meaningful update,” add a field like **Last Meaningful Update** and stamp it via Automation when a comment is added or a status note field is updated.
 
 ---
-## Example (filled): Weekly Execution Health Dashboard
 
-*Illustrative example — numbers and item names are placeholders to demonstrate format and decision triggers.*
+### 2) WIP (count)
+**Definition:** number of issues in **In Progress** (optionally by domain/team).  
+**Business/program signal:** WIP is a leading indicator of throughput and predictability; high WIP increases cycle time and coordination cost.
 
-**Audience:** Engineering leadership + TPM/Program Ops  
-**Cadence:** weekly (10-minute review)  
-**Goal:** surface reality quickly—staleness, blockers, and aging work—so decisions happen without additional status meetings.
+**Jira implementation**
+- Saved filter:  
+  `status = "In Progress" AND resolution = Unresolved`
+- Dashboard gadgets:
+  - “Filter Count” (WIP)
+  - “Two-Dimensional Filter Statistics” (WIP by Domain x Team)
 
-### Snapshot (Week of Jan 6)
-- **Staleness rate** (In Progress with no update in 7 days): **6%** (target: **<10%**)
-- **Blocked items:** **9** (down from 14 last week)
-- **Blocked time:** avg **2.1 days** (p75: **4.0 days**)
-- **WIP (In Progress):** **37** (watch: **>45**)
-- **Aging items** (In Progress > 14 days): **5** (reviewed below)
+**Example calculation**
+- WIP = 37 overall; Domain split shows: Integrations 14, Data 9, Tooling 8, Other 6.
 
-### Top aging items (actionable list)
-| Item | Program | Domain | Age | Status | Blocker / Next action | Owner | ETA |
-|---|---|---|---:|---|---|---|---|
-| Partner event schema validation | Platform Integrations | Partner Integrations | 18d | Blocked | Waiting on API field `adBreakId`; confirm delivery date or provide interim stub | A. Khan | Jan 12 |
-| Contract tests in CI | Ads Delivery Reliability | Observability & Tooling | 16d | In Progress | Needs code review bandwidth; assign reviewer | Priya | Jan 10 |
-| Data pipeline backfill | Data Quality & Validation | Data Pipelines | 15d | In Progress | Risk of rework; confirm data contract version | Miguel | Jan 11 |
+**Leader interpretation**
+- If WIP grows but throughput is flat: you likely have bottlenecks (review/approval, dependencies).
+- Action: cap WIP, improve review SLAs, break work into smaller units.
 
-### Decision triggers
-- If **staleness > 10%**: reset ownership, reduce WIP, and enforce the update SLA.
-- If **blocked items trend up** for 2 weeks: run a dependency review and escalate owners with dates.
-- If **p75 cycle time worsens**: check for hidden WIP, unclear DoR/DoD, or review bottlenecks.
+---
 
-### Anti-patterns (avoid gaming)
-- Moving tickets to “Done” without acceptance criteria or artifact links.
-- Keeping work “In Progress” to signal activity without meaningful updates.
-- Hiding dependencies in meetings/spreadsheets instead of linking issues.
+### 3) Blocked count + Blocked time (days)
+**Definition:** count of issues in **Blocked** plus time spent blocked (median + p75).  
+**Business/program signal:** dependency friction and decision latency; blocked time directly translates to delivery slip risk.
+
+**Jira implementation**
+- Saved filter:  
+  `status = Blocked AND resolution = Unresolved`
+- Dashboard gadgets:
+  - “Filter Results” (blocked list, includes owner/ETA fields)
+  - “Average Age” (proxy for blocked duration if you keep items in Blocked)
+- Better (if available): Jira Software reports or marketplace apps that compute time-in-status.
+
+**Example calculation**
+- Blocked items = 9
+- Of those, 3 have ETA > 10 business days and are on critical path → escalation candidate.
+
+**Leader interpretation**
+- Blocked count trending up for 2+ weeks indicates cross-team misalignment or missing DRIs.
+- Action: dependency review, explicit owner/date, escalation with crisp asks.
+
+---
+
+### 4) Cycle time (days) — median + p75
+**Definition:** time from **In Progress → Done**.  
+**Business/program signal:** delivery efficiency and predictability; p75 reflects the “real experience” for long-tail work.
+
+**Jira implementation**
+- Best (Jira Software): Control Chart / Cycle Time report (if enabled for boards)
+- Baseline (proxy): “Average Age” for Done items in a time window is imperfect; prefer Jira Software report or export to BI.
+
+**Example interpretation**
+- Median stable at ~6 days, p75 increases from 11 → 15 days = long-tail worsening.
+- Likely causes: dependency delays, review bottlenecks, unclear DoR/DoD, oversized tickets.
+
+**Leader interpretation**
+- If p75 worsens while throughput is stable: you are finishing easy work while hard work ages.
+- Action: break up large items, prioritize clearing blockers, enforce review SLAs, reduce WIP.
+
+---
+
+### 5) Throughput (items/week)
+**Definition:** count of issues moved to **Done** per week (use 4-week rolling trend).  
+**Business/program signal:** capacity/flow. Sustained improvements correlate with faster delivery and lower execution overhead.
+
+**Jira implementation**
+- Saved filter (Done, last 7 days):  
+  `status = Done AND resolved >= -7d`
+- Gadget:
+  - “Created vs Resolved” (trend)
+  - “Filter Count” (weekly done)
+
+**Example interpretation**
+- Throughput dips from 44 → 38 for two weeks while WIP increases = bottleneck or scope inflation.
+- Action: address constraints (review bandwidth, dependency dates), reduce concurrent work.
+
+---
+
+### 6) Reopen rate (%)
+**Definition:** % of completed issues that re-enter **In Progress** within 14 days due to defects/rework.  
+**Business/program signal:** quality/rework tax; high reopen rate creates churn, delays, and erodes predictability.
+
+**Jira implementation options**
+- Best: track a “Reopened” custom field or label via Automation when status transitions **Done → In Progress**.
+- Then:
+  - Saved filter (reopened, last 14 days):  
+    `labels = reopened AND updated >= -14d`
+  - Saved filter (done, last 14 days):  
+    `status = Done AND resolved >= -14d`
+  - Use counts to compute %.
+
+**Example calculation**
+- Done last 14 days = 120
+- Reopened last 14 days = 8
+- Reopen rate ≈ 8 / 120 = 6.7%
+
+**Leader interpretation**
+- Rising reopen rate often means weak acceptance criteria, missing validation, or rushed reviews.
+- Action: tighten DoD, add contract tests, improve review quality and release gates.
+
+---
+
+### Usage guidance (how leaders should use metrics)
+- Metrics are **signals**, not targets. Use them to ask: “What changed in the system?”
+- Always interpret metrics together (e.g., WIP + throughput + cycle time).
+- When a metric worsens, respond with a **mechanism change** (WIP cap, review SLA, dependency escalation), not more meetings.
+ets instead of linking issues.
