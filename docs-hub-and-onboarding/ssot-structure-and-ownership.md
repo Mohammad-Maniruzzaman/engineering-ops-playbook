@@ -1,28 +1,59 @@
-# Single Source of Truth (SSOT): Structure + Ownership
+# Single Source of Truth (SSOT) Structure
 
-## Goal
-Make critical technical knowledge discoverable, current, and maintained.
+## Objective
+Create a durable, searchable documentation hub that reduces repeated questions, speeds onboarding, and ensures critical operational knowledge remains current.
 
-## Recommended taxonomy
-- Architecture Specs
-- System Diagrams
-- APIs / Interfaces
-- Runbooks / Ops Guides
-- Data Contracts / Event Schemas
-- Decision Logs
-- Planning Artifacts (roadmaps, milestones)
-- Onboarding (learning paths, checklists)
+## Core rules
+- Every critical doc has an **Owner (DRI)** and a **Review cadence**.
+- If it is not discoverable in the hub, it does not exist.
+- Decisions and operational learnings update docs as part of closure (no “optional” documentation debt).
+
+## Recommended hub structure
+- `00-start-here/`
+  - `index.md` (what this system is, how to navigate)
+  - `glossary.md`
+  - `how-we-work.md` (cadence, comms, decision logs)
+- `01-architecture/`
+  - `system-overview.md`
+  - `service-catalog.md`
+  - `architecture-specs/` (one spec per system/change)
+- `02-operations/`
+  - `runbooks/`
+  - `oncall/` (if applicable)
+  - `incident-reviews/`
+- `03-product-and-program/`
+  - `roadmap.md`
+  - `planning-artifacts/`
+  - `dependency-register.md`
+- `04-onboarding/`
+  - `30-60-90.md`
+  - `training-plan.md`
+  - `first-week-checklist.md`
 
 ## Ownership model
-- Every doc has an **Owner** and **Review Cadence** (e.g., quarterly).
-- Teams own the content; Engineering Ops governs structure and hygiene.
+- Hub Owner (DRI): responsible for IA, quality bar, and staleness reporting
+- Domain Owners: responsible for their folder content and review cadence
+- Contributors: create/update docs via PRs using templates
 
-## Quality rules
-- Architecture specs include: purpose, scope, dependencies, non-goals, risks, rollout.
-- Diagrams include: last-updated date, source-of-truth link, owner.
-- Runbooks include: triggers, steps, rollback, escalation path.
+---
 
-## Maintenance mechanisms
-- Monthly “docs health” audit: stale docs, missing owners, broken links
-- Quarterly refresh tied to planning cycles
-- Post-incident updates: when incidents expose gaps, docs are updated as part of closure
+## Example (filled): “Start here” index
+
+*Illustrative example — names and systems are placeholders.*
+
+### What this hub is
+This hub is the single source of truth for Ads Engineering execution artifacts: architecture specs, runbooks, onboarding, planning cadence, and decision records.
+
+### If you are new
+1) Read `00-start-here/how-we-work.md` (cadence + decision logging)  
+2) Read `01-architecture/system-overview.md` (how the system fits together)  
+3) Follow the `04-onboarding/first-week-checklist.md`  
+
+### If you are shipping changes
+- Create an `01-architecture/architecture-specs/<date>-<change>.md`
+- Add links in the weekly update + decision log
+- Update the relevant runbook if operational behavior changes
+
+### Quality bar
+- Every doc has: owner, last reviewed date, and links to relevant artifacts
+- Anything stale is flagged weekly and assigned for refresh
