@@ -25,6 +25,7 @@ If you are hiring for Engineering Operations / Program Management roles, this re
 - **Culture events** → [events/](./events/)  
   Hack day/demo fair runbook
 
+
 ## Start here (fast path)
 - [Jira taxonomy + data integrity](./jira-governance/taxonomy-and-data-integrity.md)
 - [Executive readout template](./planning-cadence/exec-readout-template.md)
@@ -42,6 +43,15 @@ If you are hiring for Engineering Operations / Program Management roles, this re
 - Documentation is a product: curated, owned, and used.
 - Decisions are recorded and searchable.
 - Tools are rolled out via pilots with measurable success criteria and guardrails.
+
+## Opinionated defaults (lightweight, measurable)
+These are the defaults I use to keep tracking truthful and overhead low:
+- **Staleness SLA:** any item in **In Progress** must have an update within **7 days** (otherwise it is not “in progress”).
+- **Blocked definition:** **Blocked** requires a blocker type + owner + next action + ETA (no exceptions).
+- **Cycle time reporting:** track **median + p75** cycle time (avoid averages).
+- **Dependencies:** every dependency has a DRI and a “needed by” date; unresolved items within **10 business days** of need are escalated.
+- **Docs as a product:** every critical doc has an owner and **quarterly** review cadence; post-incident learnings update docs as part of closure.
+- **Change management:** pilot mechanisms for **2–4 weeks** before rollout; delete anything that teams do not use weekly.
 
 ## Notes
 This repository contains generic templates and examples only and does not include employer-proprietary information.
