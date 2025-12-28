@@ -3,6 +3,23 @@
 Lightweight, practical mechanisms to improve execution quality for Engineering, Data Science, and TPM/Program teams—focused on **truthful tracking, low-overhead planning, durable decisions, and scalable knowledge**.
 
 If you are hiring for Engineering Operations / Program Management roles, this repo is intended to demonstrate operating-model design and clear communication artifacts.
+## Objective (why this exists)
+Technical organizations often pay an “execution tax” as they scale: inconsistent tracking data, high meeting load, unclear ownership, slow onboarding, and decisions that live in chats instead of durable artifacts. The result is predictable business impact—missed timelines, lower engineering throughput, higher operational toil, and slower iteration.
+
+This repository exists to provide a lightweight, reusable **Engineering Operations operating model** (templates + definitions + guardrails) that improves execution speed and clarity **without adding bureaucracy**.
+
+### Scope and boundaries
+This playbook focuses on a small set of mechanisms that drive execution clarity (tracking, planning cadence, docs/onboarding, comms hygiene, and tool pilots). It is designed to be adopted incrementally and adapted to local team needs—prioritizing outcomes and measurable signal over ceremony. The intent is to reduce execution overhead while improving truth and decision velocity. The mechanisms here are intentionally minimal: enough structure to scale, not enough to slow teams down.
+
+### Business outcomes this playbook targets
+- **Faster delivery**: lower cycle time and fewer blocked days
+- **Higher execution predictability**: clear milestones, dependencies, and decisions
+- **Lower overhead**: fewer status meetings and less “where are we?” work
+- **Faster onboarding**: less tribal knowledge, fewer repeated questions
+- **Safer tool adoption (including GenAI)**: pilots with guardrails and measurable success criteria
+
+### Scope and boundaries
+This playbook focuses on a small set of mechanisms that drive execution clarity (tracking, planning cadence, docs/onboarding, comms hygiene, and tool pilots). The intent is to reduce execution overhead while improving truth and decision velocity. The mechanisms here are intentionally minimal: enough structure to scale, not enough to slow teams down.
 
 ## What this playbook improves
 - Jira workflows/fields vary across teams → dashboards become unreliable
