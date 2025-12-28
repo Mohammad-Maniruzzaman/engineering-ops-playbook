@@ -33,19 +33,20 @@ Dashboards are decision tools. Each dashboard should answer a specific leadershi
 - Use p75 cycle time (not averages) to capture the real experience.
 - Treat metrics as signals, not targets; prevent gaming through data integrity rules.
 ---
+## Example (filled): Weekly Execution Health Dashboard
 
-## Example (filled): Weekly Execution Health Dashboard (what “good” looks like)
+*Illustrative example — numbers and item names are placeholders to demonstrate format and decision triggers.*
 
 **Audience:** Engineering leadership + TPM/Program Ops  
 **Cadence:** weekly (10-minute review)  
-**Goal:** surface reality quickly—staleness, blockers, and aging work—so decisions happen without extra status meetings.
+**Goal:** surface reality quickly—staleness, blockers, and aging work—so decisions happen without additional status meetings.
 
 ### Snapshot (Week of Jan 6)
-- **Staleness rate (In Progress, no update in 7 days):** 6% (target: <10%)
-- **Blocked items:** 9 (down from 14 last week)
-- **Blocked time (avg):** 2.1 days (p75: 4.0 days)
-- **WIP (In Progress):** 37 items (watch: WIP creep > 45)
-- **Aging items (In Progress > 14 days):** 5 (all reviewed below)
+- **Staleness rate** (In Progress with no update in 7 days): **6%** (target: **<10%**)
+- **Blocked items:** **9** (down from 14 last week)
+- **Blocked time:** avg **2.1 days** (p75: **4.0 days**)
+- **WIP (In Progress):** **37** (watch: **>45**)
+- **Aging items** (In Progress > 14 days): **5** (reviewed below)
 
 ### Top aging items (actionable list)
 | Item | Program | Domain | Age | Status | Blocker / Next action | Owner | ETA |
@@ -54,13 +55,12 @@ Dashboards are decision tools. Each dashboard should answer a specific leadershi
 | Contract tests in CI | Ads Delivery Reliability | Observability & Tooling | 16d | In Progress | Needs code review bandwidth; assign reviewer | Priya | Jan 10 |
 | Data pipeline backfill | Data Quality & Validation | Data Pipelines | 15d | In Progress | Risk of rework; confirm data contract version | Miguel | Jan 11 |
 
-### What decisions this dashboard should trigger?
-- If **staleness > 10%**: reset ownership, reduce WIP, and enforce update SLA.
-- If **blocked items trend up 2 weeks in a row**: run a dependency review and escalate owners with dates.
+### Decision triggers
+- If **staleness > 10%**: reset ownership, reduce WIP, and enforce the update SLA.
+- If **blocked items trend up** for 2 weeks: run a dependency review and escalate owners with dates.
 - If **p75 cycle time worsens**: check for hidden WIP, unclear DoR/DoD, or review bottlenecks.
 
 ### Anti-patterns (avoid gaming)
 - Moving tickets to “Done” without acceptance criteria or artifact links.
 - Keeping work “In Progress” to signal activity without meaningful updates.
 - Hiding dependencies in meetings/spreadsheets instead of linking issues.
-
