@@ -1,7 +1,7 @@
 # Jira Taxonomy & Data Integrity
 
 ## Goal
-Make Jira data trustworthy so dashboards, planning, and execution decisions are grounded in reality.
+Make Jira data trustworthy so dashboards, planning, and execution decisions are grounded in reality. **Taxonomy** should be just rich enough to route work and produce trustworthy dashboards—no more.
 
 ## Required fields (minimum set)
 - **Program / Initiative** (e.g., Q1 Planning, Ads Delivery Reliability, Data Quality)
