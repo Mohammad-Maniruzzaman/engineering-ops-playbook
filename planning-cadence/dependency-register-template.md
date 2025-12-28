@@ -31,6 +31,15 @@ Make cross-team dependencies explicit so plans remain credible. This register is
 
 ---
 
+## Weekly dependency review agenda (10 minutes)
+1) **Overdue (first):** confirm owner, force an ETA or decision, record escalation.  
+2) **Due in next 14 days:** confirm “Needed by” dates and that next actions are scheduled.  
+3) **At risk items:** require a mitigation plan (fallback: stub / re-sequence / de-scope).  
+4) **Critical path:** ask “what breaks if this slips?” and document the decision needed.  
+5) **Close items:** only close when the deliverable is verified (not just “someone said done”).  
+
+---
+
 ## Example (filled)
 *Illustrative example — names and dates are placeholders.*
 
