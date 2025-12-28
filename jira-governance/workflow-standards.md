@@ -26,10 +26,12 @@ Ticket must include:
 - Post-implementation notes recorded (if applicable)
 
 ## Operating rules
-- No ticket stays **In Progress** without update > 7 days
-- **Blocked** tickets must include: blocker type, owner, next action, ETA
-- Teams use the same required fields (see taxonomy)
-- Status changes are meaningful: do not use statuses to “look green”
+- No ticket stays **In Progress** without an update for **7+ days**.
+- An “update” means a meaningful note on progress/next action (not just a status toggle).
+- **Blocked** tickets must include: blocker type, owner, next action, ETA.
+- Teams use the same required fields (see taxonomy).
+- Status changes are meaningful: do not use statuses to “look green.”
+
 ---
 
 ## Example (filled): Workflow policy for Stories/Tasks (practical)
