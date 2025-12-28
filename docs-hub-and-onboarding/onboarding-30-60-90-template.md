@@ -1,23 +1,62 @@
-# Onboarding 30/60/90 Template (Technical)
+# 30/60/90 Onboarding Plan
 
-## 0–2 weeks: Orientation + tooling
-- Accounts, access, and environments
-- Tooling basics (Jira, CI/CD, dashboards, docs hub)
-- Key people map (team + cross-functional partners)
-- Read top docs: architecture overview + runbooks + incident history
+## Objective
+Reduce time-to-productivity for new engineers/TPMs by providing a clear path: systems context, operational mechanisms, and first wins.
 
-## 30 days: Productive contributions
-- Shadow one oncall/incident review (or equivalent reliability ritual)
-- Own one small scoped task end-to-end (with review)
-- Understand planning cadence: how work is prioritized and tracked
-- Draft one doc improvement (close a known gap)
+## Day 1–7 (First week)
+- Access + accounts (tools, repos, dashboards)
+- Read: system overview + how-we-work
+- Meet: key stakeholders + DRIs
+- Ship: a small doc fix or dashboard improvement
 
-## 60 days: Ownership
-- Own a sub-area or recurring mechanism (e.g., dashboard hygiene, dependency tracking)
-- Lead one cross-functional sync with a clear agenda and outcomes
-- Produce one executive-ready artifact (readout or decision memo)
+## Days 8–30 (First month)
+- Own one small mechanism (e.g., decision log hygiene, dependency register)
+- Complete shadow rotations (planning, incident review, release)
+- Deliver first scoped improvement with measurable impact
 
-## 90 days: Leverage
-- Identify and ship one operational improvement (reduce toil, improve truth, speed onboarding)
-- Establish measurable outcomes and adoption plan
-- Propose next-quarter improvements tied to planning cadence
+## Days 31–60 (Second month)
+- Run a recurring cadence (weekly health review, planning prep)
+- Drive one cross-team dependency to closure
+- Improve one onboarding/doc area based on gaps found
+
+## Days 61–90 (Third month)
+- Own a program end-to-end (or major workstream)
+- Establish durable artifacts: spec + runbook + dashboard
+- Mentor a newer teammate on the mechanisms
+
+---
+
+## Example (filled): TPM onboarding to an Ads Engineering org
+
+*Illustrative example — names and projects are placeholders.*
+
+### Day 1–7
+- Gain access: Jira project(s), dashboards, documentation hub, Slack channels
+- Read:
+  - `system-overview.md`
+  - `how-we-work.md`
+  - 1–2 runbooks for top operational issues
+- Meet:
+  - Ads Eng lead (expectations)
+  - Data Science partner (metrics & measurement)
+  - Platform partner (dependency patterns)
+- Ship:
+  - Create a “Start here” index update + add missing links to weekly readout and decision log
+
+### Days 8–30
+- Own mechanism: enforce “Blocked requires owner+ETA” and staleness SLA
+- Shadow: planning cycle prep + one incident review
+- Deliver: clean dependency register + weekly execution health dashboard; measure meeting time reduction
+
+### Days 31–60
+- Run cadence: weekly execution health review (10 mins) with decision capture
+- Close one dependency: get upstream API contract confirmed with dates and DRIs
+- Improve onboarding: add a “first-week checklist” and a glossary based on newcomer questions
+
+### Days 61–90
+- Own a program: integration readiness + rollout coordination
+- Create durable artifacts:
+  - architecture spec for change
+  - runbook update for operational behavior
+  - dashboard for adoption/defect tracking
+- Train: run a 30-minute onboarding session for new joiners (“how we track, decide, and ship”)
