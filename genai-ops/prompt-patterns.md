@@ -28,13 +28,13 @@ You are a Program Ops assistant. Draft a **1-page executive readout** using only
 - For each bullet, include a **source link** (Jira issue or doc) or label “No source provided.”
 - Output must follow this exact structure:
 
-**1) What changed since last update (max 5 bullets)**  
-**2) Program health (Scope/Schedule/Risks/Dependencies) with 1 sentence each**  
-**3) Key milestones (next 4–6 weeks) table: Date | Milestone | Owner | Confidence**  
-**4) Top risks + mitigations table: Risk | Mitigation | Owner | ETA**  
-**5) Decisions needed / asks (max 5 bullets)**  
-**6) Missing data / questions (if any)**  
-**7) Quality check (see below)**
+  **1) What changed since last update (max 5 bullets)**  
+      **2) Program health (Scope/Schedule/Risks/Dependencies) with 1 sentence each**  
+      **3) Key milestones (next 4–6 weeks) table: Date | Milestone | Owner | Confidence**  
+      **4) Top risks + mitigations table: Risk | Mitigation | Owner | ETA**  
+      **5) Decisions needed / asks (max 5 bullets)**  
+      **6) Missing data / questions (if any)**  
+      **7) Quality check (see below)**
 
 **Quality check:**
 - Are there any claims without a source?
