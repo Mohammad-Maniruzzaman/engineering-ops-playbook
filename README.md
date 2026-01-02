@@ -18,9 +18,6 @@ This playbook focuses on a small set of mechanisms that drive execution clarity 
 - **Faster onboarding**: less tribal knowledge, fewer repeated questions
 - **Safer tool adoption (including GenAI)**: pilots with guardrails and measurable success criteria
 
-### Scope and boundaries
-This playbook focuses on a small set of mechanisms that drive execution clarity (tracking, planning cadence, docs/onboarding, comms hygiene, and tool pilots). The intent is to reduce execution overhead while improving truth and decision velocity. The mechanisms here are intentionally minimal: enough structure to scale, not enough to slow teams down.
-
 ## What this playbook improves
 - Jira workflows/fields vary across teams → dashboards become unreliable
 - Planning cycles create churn/logistics overhead instead of clarity
